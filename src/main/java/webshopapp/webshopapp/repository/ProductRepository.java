@@ -1,7 +1,7 @@
-package webshopapp.webshopapp.dao;
+package webshopapp.webshopapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import webshopapp.webshopapp.model.Product;
+import webshopapp.webshopapp.domain.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 

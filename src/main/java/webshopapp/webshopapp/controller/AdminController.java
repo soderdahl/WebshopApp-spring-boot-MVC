@@ -9,9 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import webshopapp.webshopapp.model.Admin;
+import webshopapp.webshopapp.domain.Admin;
+import webshopapp.webshopapp.domain.AdminLoginFormBean;
+import webshopapp.webshopapp.domain.CustomerLoginFormBean;
 import webshopapp.webshopapp.service.LoginAdminService;
-import webshopapp.webshopapp.service.LoginCustomerService;
 
 @Controller
 public class AdminController {
@@ -22,24 +23,17 @@ public class AdminController {
     Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 
-    @GetMapping("/")
-    String index(){
-        return "index";
-    }
-
-
-
     @GetMapping("/loginAdmin")
     public String loginAdmin(Model model) {
-        model.addAttribute("admin", new Admin());
+        model.addAttribute("admin", new AdminLoginFormBean());
         model.addAttribute("message", "Please login:");
         return "loginAdmin";
     }
 
     @PostMapping("/loginAdmin")
-    public String loginSubmit(@ModelAttribute Admin admin, Model model) {
-        if (loginAdminService.login(admin.getUserName())) {
-            model.addAttribute("userName",admin.getUserName());
+    public String loginSubmit(@ModelAttribute AdminLoginFormBean adminLoginFormBean, Model model) {
+        if (loginAdminService.login(adminLoginFormBean.getUserName())) {
+            model.addAttribute("userName",adminLoginFormBean.getUserName());
             return "viewProducts";
         } else {
             model.addAttribute("message", "No such user, try again");
@@ -47,14 +41,7 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/viewProducts")
-    String viewProducts(){
-        return "viewProducts";
-    }
 
 
-    @GetMapping("/shoppingCart")
-    String shoppingCart(){
-        return "shoppingCart";
-    }
+
 }

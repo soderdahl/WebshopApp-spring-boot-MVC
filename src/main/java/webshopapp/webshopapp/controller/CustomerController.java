@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import webshopapp.webshopapp.model.Customer;
+import webshopapp.webshopapp.domain.CustomerLoginFormBean;
 import webshopapp.webshopapp.service.LoginCustomerService;
 
 @Controller
@@ -30,15 +30,15 @@ public class CustomerController {
 
     @GetMapping("/login")
     public String loginCustomer(Model model) {
-        model.addAttribute("customer", new Customer());
+        model.addAttribute("loginCustomerForm", new CustomerLoginFormBean());
         model.addAttribute("message", "Please login:");
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginSubmit(@ModelAttribute Customer customer, Model model) {
-        if (loginService.login(customer.getUserName())) {
-            model.addAttribute("userName",customer.getUserName());
+    public String loginSubmit(@ModelAttribute CustomerLoginFormBean loginCustomerForm, Model model) {
+        if (loginService.login(loginCustomerForm.getUserName())) {
+            model.addAttribute("userName",loginCustomerForm.getUserName());
             return "viewProducts";
         } else {
             model.addAttribute("message", "No such user, try again");
@@ -56,4 +56,6 @@ public class CustomerController {
     String shoppingCart(){
         return "shoppingCart";
     }
+
+
 }

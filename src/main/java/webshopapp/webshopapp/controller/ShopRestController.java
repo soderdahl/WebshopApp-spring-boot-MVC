@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import webshopapp.webshopapp.dao.ProductDaoImpl;
-import webshopapp.webshopapp.model.Product;
+import webshopapp.webshopapp.domain.Product;
 
 import javax.validation.Valid;
 import java.util.List;

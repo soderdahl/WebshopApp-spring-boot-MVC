@@ -1,6 +1,6 @@
 package webshopapp.webshopapp.component;
 
-import webshopapp.webshopapp.model.Product;
+import webshopapp.webshopapp.domain.Product;
 
 
 public class Item {

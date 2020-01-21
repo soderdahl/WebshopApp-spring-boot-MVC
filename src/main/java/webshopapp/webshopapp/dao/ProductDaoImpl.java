@@ -3,7 +3,8 @@ package webshopapp.webshopapp.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webshopapp.webshopapp.model.Product;
+import webshopapp.webshopapp.domain.Product;
+import webshopapp.webshopapp.repository.ProductRepository;
 
 import java.util.List;
 import java.util.Optional;

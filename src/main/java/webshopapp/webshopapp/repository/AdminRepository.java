@@ -1,7 +1,7 @@
-package webshopapp.webshopapp.dao;
+package webshopapp.webshopapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import webshopapp.webshopapp.model.Admin;
+import webshopapp.webshopapp.domain.Admin;
 
 
 import java.util.List;

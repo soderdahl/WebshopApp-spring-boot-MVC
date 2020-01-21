@@ -43,6 +43,7 @@
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
+
                                 <form th:action="@{/loginAdmin}" th:object="${admin}" method="post">
                                     <div class="form-group">
                                         <label for="userName">* Username: </label>
@@ -52,9 +53,9 @@
                                         <p style="color: #828282">Enter your username here.</p>
                                     </div>
 
-
-
                                     <button type="submit" class="btn btn-primary">Log in</button>
+
+
                                 </form>
                             </div>
                         </div>

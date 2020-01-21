@@ -1,6 +1,6 @@
 package webshopapp.webshopapp.dao;
 
-import webshopapp.webshopapp.model.Product;
+import webshopapp.webshopapp.domain.Product;
 
 import java.util.List;
 

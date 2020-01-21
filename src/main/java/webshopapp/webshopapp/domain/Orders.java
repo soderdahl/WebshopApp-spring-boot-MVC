@@ -1,4 +1,4 @@
-package webshopapp.webshopapp.model;
+package webshopapp.webshopapp.domain;
 
 
 import javax.persistence.*;

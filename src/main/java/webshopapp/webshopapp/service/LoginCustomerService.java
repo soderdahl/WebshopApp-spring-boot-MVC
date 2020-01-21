@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
-import webshopapp.webshopapp.dao.CustomerRepository;
-import webshopapp.webshopapp.model.Customer;
+import webshopapp.webshopapp.repository.CustomerRepository;
+import webshopapp.webshopapp.domain.Customer;
 
 import java.util.List;
 

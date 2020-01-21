@@ -2,7 +2,7 @@ package webshopapp.webshopapp.component;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
-import webshopapp.webshopapp.model.Customer;
+import webshopapp.webshopapp.domain.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
