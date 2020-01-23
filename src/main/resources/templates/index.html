@@ -13,7 +13,7 @@
     <div class="row" style="margin-bottom: -100px;">
         <div class="col-xs-8">
             <h2 class="section-headline">
-                <span>User Account</span>
+                <span>Please log in or register as a new customer</span>
             </h2>
         </div>
 
@@ -26,25 +26,26 @@
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li th:classappend="${classActiveNewAccount}? 'active'"><a
+                <li ><a
                         href="#tab-1" data-toggle="tab"><span style="color: red;">Log in Admin</span></a></li>
-                <li th:classappend="${classActiveLogin}? 'active'"><a
+                <li ><a
                         href="#tab-2" data-toggle="tab"><span style="color: red;">Log
 								in Customer</span></a></li>
+                <li ><a
+                        href="#tab-3" data-toggle="tab"><span style="color: red;">Register new Customer</span></a></li>
             </ul>
 
             <!-- Tab panels -->
             <div class="tab-content">
-
+                <span th:text="${message}">text</span>
                 <!-- Log in Admin  -->
                 <div class="tab-pane fade" id="tab-1"
-                     th:classappend="${classActiveLogin}? 'in active'">
+                    >
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
-
-                                <form th:action="@{/loginAdmin}" th:object="${admin}" method="post">
+                                <form th:action="@{/loginAdmin}" th:object="${adminLoginFrormBean}" method="post">
                                     <div class="form-group">
                                         <label for="userName">* Username: </label>
                                         <input
@@ -64,12 +65,12 @@
 
                 <!-- log in Customer -->
                 <div class="tab-pane fade" id="tab-2"
-                     th:classappend="${classActiveLogin}? 'in active'">
+                    >
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
-                                <form th:action="@{/login}" th:object="${customer}" method="post">
+                                <form th:action="@{/login}" th:object="${customerLoginFormBean}" method="post">
                                     <div class="form-group">
                                         <label for="userName">* Username: </label>
                                         <input
@@ -77,40 +78,37 @@
                                             id="userName" name="userName" />
                                         <p style="color: #828282">Enter your username here.</p>
                                     </div>
-
-
-
                                     <button type="submit" class="btn btn-primary">Log in</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- forget password -->
+                <!-- register new customer -->
                 <div class="tab-pane fade" id="tab-3"
-                     th:classappend="${classActiveForgetPassword}? 'in active'">
+                >
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
-                                <div th:if="${emailNotExist}" class="alert alert-danger">Email doesn't exist.</div>
-                                <div th:if="${forgetPasswordEmailSent}" class="alert alert-success">Email sent.</div>
-                                <form th:action="@{/forgetPassword}" method="post">
+                                <form th:action="@{/addNewCustomer}" th:object="${customer}" method="post">
                                     <div class="form-group">
-                                        <label for="recoverEmail">* Your Email: </label> <input
-                                            required="required" type="text" class="form-control"
-                                            id="recoverEmail" name="email" />
-                                        <p style="color: #828282">Enter your registered email
-                                            address here.</p>
+                                        <label for="userName">* Username: </label>
+                                        <input
+                                                required="required" type="text" class="form-control"
+                                                id="userName2" name="userName" />
+                                        <p style="color: #828282">Enter your username here.</p>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Register</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>

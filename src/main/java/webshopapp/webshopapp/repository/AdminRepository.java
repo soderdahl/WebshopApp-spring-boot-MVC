@@ -1,12 +1,12 @@
 package webshopapp.webshopapp.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import webshopapp.webshopapp.domain.Admin;
 
 
 import java.util.List;
 
-public interface AdminRepository extends JpaRepository<Admin, Integer> {
+public interface AdminRepository extends CrudRepository<Admin, Integer> {
 
     List<Admin> findByUserName(String userName);
 }

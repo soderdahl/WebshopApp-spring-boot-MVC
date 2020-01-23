@@ -9,16 +9,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import webshopapp.webshopapp.domain.Customer;
 import webshopapp.webshopapp.domain.CustomerLoginFormBean;
-import webshopapp.webshopapp.service.LoginCustomerService;
+import webshopapp.webshopapp.domain.Product;
+import webshopapp.webshopapp.service.CustomerService;
+import webshopapp.webshopapp.service.ProductService;
+
+import java.util.List;
 
 @Controller
 public class CustomerController {
 
     @Autowired
-    LoginCustomerService loginService;
+    CustomerService customerService;
 
-    Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    @Autowired
+    ProductService productService;
+
 
 
     @GetMapping("/")
@@ -26,7 +34,17 @@ public class CustomerController {
         return "index";
     }
 
+    @PostMapping("/addNewCustomer")
+    public String addNewCustomer(@ModelAttribute Customer customer, Model model) {
 
+        if (customerService.addCustomer(customer.getUserName())) {
+            model.addAttribute("userName",customer.getUserName());
+            return "viewProducts";
+        } else {
+            model.addAttribute("message", "Please try again");
+            return "addNewCustomer";
+        }
+    }
 
     @GetMapping("/login")
     public String loginCustomer(Model model) {
@@ -37,17 +55,23 @@ public class CustomerController {
 
     @PostMapping("/login")
     public String loginSubmit(@ModelAttribute CustomerLoginFormBean loginCustomerForm, Model model) {
-        if (loginService.login(loginCustomerForm.getUserName())) {
+        if (customerService.login(loginCustomerForm.getUserName())) {
             model.addAttribute("userName",loginCustomerForm.getUserName());
-            return "viewProducts";
+            return "redirect:/viewProducts";
         } else {
-            model.addAttribute("message", "No such user, try again");
-            return "login";
+            model.addAttribute("message", "No user with name "+loginCustomerForm.getUserName()+", try again");
+            return "index";
         }
     }
 
-    @GetMapping("/viewProducts")
-    String viewProducts(){
+
+
+    @RequestMapping("/viewProducts")
+    public String getProducts(Model model) {
+        List<Product> products = productService.findAllProduct();
+        System.out.println(products);
+        model.addAttribute("products", products);
+
         return "viewProducts";
     }
 

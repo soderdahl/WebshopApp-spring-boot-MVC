@@ -9,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import webshopapp.webshopapp.domain.Admin;
 import webshopapp.webshopapp.domain.AdminLoginFormBean;
-import webshopapp.webshopapp.domain.CustomerLoginFormBean;
 import webshopapp.webshopapp.service.LoginAdminService;
 
 @Controller
@@ -34,9 +32,9 @@ public class AdminController {
     public String loginSubmit(@ModelAttribute AdminLoginFormBean adminLoginFormBean, Model model) {
         if (loginAdminService.login(adminLoginFormBean.getUserName())) {
             model.addAttribute("userName",adminLoginFormBean.getUserName());
-            return "viewProducts";
+            return "adminProduct";
         } else {
-            model.addAttribute("message", "No such user, try again");
+            model.addAttribute("message", "No user with name \"+loginCustomerForm.getUserName()+\", try again");
             return "loginAdmin";
         }
     }

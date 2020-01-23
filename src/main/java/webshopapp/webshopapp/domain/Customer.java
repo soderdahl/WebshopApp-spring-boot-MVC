@@ -15,6 +15,10 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String userName) {
+        this.userName = userName;
+    }
+
     public int getId() {
         return Id;
     }

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @SessionScope
-public class LoginCustomerService {
+public class CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
@@ -20,9 +20,9 @@ public class LoginCustomerService {
     Customer customer;
     boolean isLoggedIn;
 
-    Logger logger = LoggerFactory.getLogger(LoginCustomerService.class);
+    Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
-    public LoginCustomerService() {
+    public CustomerService() {
     }
 
     public boolean login(String userName) {
@@ -35,4 +35,15 @@ public class LoginCustomerService {
             return false;
         }
     }
+
+    public boolean addCustomer(String userName) {
+        List<Customer> customerListList = customerRepository.findByUserName(userName);
+        if (customerListList.size()>0) {
+            return false;
+        } else {
+            customerRepository.save(new Customer(userName));
+            return true;
+        }
+    }
+
 }
