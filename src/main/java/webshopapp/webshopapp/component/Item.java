@@ -5,16 +5,15 @@ import webshopapp.webshopapp.domain.Product;
 
 public class Item {
 
-    private int count;
+    private int count=1;
 
     private Product product;
 
     public Item() {
     }
 
-    public Item(Product product, int count) {
+    public Item(Product product) {
         this.product = product;
-        this.count = count;
     }
 
     public Product getProduct() {

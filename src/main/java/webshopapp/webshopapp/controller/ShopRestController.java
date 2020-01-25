@@ -69,13 +69,6 @@ public class ShopRestController {
             return ResponseEntity.notFound().build();
         }
 
-        /*
-        product.setProductName(productDetails.productName);
-         product.setPrice(productDetails.price);
-
-         Product updateProduct = productDaoImpl.addProduct(product);
-        */
-
         return ResponseEntity.ok().body(product);//"updateProduct" instead
 
     }

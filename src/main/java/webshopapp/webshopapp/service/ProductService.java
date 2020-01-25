@@ -27,6 +27,10 @@ public class ProductService {
 
     }
 
+    public Optional<Product> findProductByName(String productName) {
+        return (Optional<Product>) productRepository.findByProductName(productName);
+    }
+
     public Optional<Product> findProductById(int productId) {
         return productRepository.findById(productId);
     }

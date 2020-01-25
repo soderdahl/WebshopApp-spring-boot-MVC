@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header" />
+
+
+
+<body>
+<div th:replace="common/header :: navbar" />
+<h2>Your Orders</h2>
+<p></p>
+
+<div class="container order" th:each="order : ${orders}">
+    <div class="row order border border-success" data-toggle="collapse" th:href="'#collapse'+${order.getOrderId()}" aria-expanded="false" aria-controls="collapseExample">
+        <div class="col" align="center">
+            <div class="columnName" th:text="ORDER" ></div>
+            <div th:text="${order.getOrderId()}"></div>
+        </div>
+    </div>
+
+    <table class="table collapse table-striped table-hover"   th:id="'collapse'+${order.getOrderId()}">
+        <thead>
+        <tr class="bg-success">
+            <th scope="col">Product name</th>
+            <th scope="col">Product price</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orderProduct : ${order.getOrderProductsList()}">
+            <td th:text="${orderProduct.getProduct().productName}"></td>
+            <td th:text="${orderProduct.getProduct().price}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:text="'Total sum: '+ ${sum}"></div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

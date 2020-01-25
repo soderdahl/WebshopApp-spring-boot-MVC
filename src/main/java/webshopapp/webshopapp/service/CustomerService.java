@@ -20,7 +20,7 @@ public class CustomerService {
     Customer customer;
     boolean isLoggedIn;
 
-    Logger logger = LoggerFactory.getLogger(CustomerService.class);
+
 
     public CustomerService() {
     }

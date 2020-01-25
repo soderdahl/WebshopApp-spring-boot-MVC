@@ -1,10 +1,14 @@
 package webshopapp.webshopapp.domain;
 
+import org.springframework.web.context.annotation.SessionScope;
+
 import javax.persistence.*;
 
 
 @Entity
 public class Customer {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

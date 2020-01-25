@@ -1,5 +1,6 @@
 package webshopapp.webshopapp.domain;
 
+import org.springframework.web.context.annotation.SessionScope;
 
 public class CustomerLoginFormBean {
 

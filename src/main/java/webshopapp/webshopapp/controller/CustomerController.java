@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import webshopapp.webshopapp.component.ShoppingCart;
 import webshopapp.webshopapp.domain.Customer;
 import webshopapp.webshopapp.domain.CustomerLoginFormBean;
 import webshopapp.webshopapp.domain.Product;
+import webshopapp.webshopapp.repository.CustomerRepository;
 import webshopapp.webshopapp.service.CustomerService;
 import webshopapp.webshopapp.service.ProductService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -26,6 +29,12 @@ public class CustomerController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    CustomerRepository customerRepository;
+
+    @Autowired
+    ShoppingCart cart;
 
 
 
@@ -53,10 +62,19 @@ public class CustomerController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String logout(Model model){
+        cart.getItems().clear();
+        return "index";
+    }
+
     @PostMapping("/login")
-    public String loginSubmit(@ModelAttribute CustomerLoginFormBean loginCustomerForm, Model model) {
+    public String loginSubmit(@ModelAttribute CustomerLoginFormBean loginCustomerForm, HttpSession session, Model model) {
         if (customerService.login(loginCustomerForm.getUserName())) {
             model.addAttribute("userName",loginCustomerForm.getUserName());
+            List<Customer> customers = customerRepository.findByUserName(loginCustomerForm.getUserName());
+            Customer customer = customers.get(0);
+            session.setAttribute("customer",customer);
             return "redirect:/viewProducts";
         } else {
             model.addAttribute("message", "No user with name "+loginCustomerForm.getUserName()+", try again");
@@ -69,9 +87,8 @@ public class CustomerController {
     @RequestMapping("/viewProducts")
     public String getProducts(Model model) {
         List<Product> products = productService.findAllProduct();
-        System.out.println(products);
         model.addAttribute("products", products);
-
+        model.addAttribute("sum",cart.getTotalCost());
         return "viewProducts";
     }
 
